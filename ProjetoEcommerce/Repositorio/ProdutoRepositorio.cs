@@ -109,5 +109,19 @@ namespace ProjetoEcommerce.Repositorio
                 return produto;
             }
         }
+
+        public void Excluir (int id)
+        {
+            using (var conexao = new MySqlConnection (_conexaoMySQL))
+            {
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand("delete from Produto where CodProd = @codigo", conexao);
+
+                cmd.Parameters.AddWithValue("@codigo", id);
+                int i = cmd.ExecuteNonQuery();
+
+                conexao.Close();
+            }
+        }
     }
 }
