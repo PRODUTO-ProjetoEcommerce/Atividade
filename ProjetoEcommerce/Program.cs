@@ -5,10 +5,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-// INJEÇÃO DE DEPENDENCIA 
+// INJEï¿½ï¿½O DE DEPENDENCIA 
 builder.Services.AddScoped<UsuarioRepositorio>();
 builder.Services.AddScoped<ClienteRepositorio>();
-
+builder.Services.AddScoped<ProdutoRepositorio>();
 
 
 

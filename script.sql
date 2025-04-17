@@ -27,3 +27,6 @@ Preco decimal(10,2) not null
 SELECT * FROM Usuario;
 SELECT * FROM Cliente;
 select * from Produto;
+
+insert into Usuario (Nome,Email,Senha)values
+('Rai','rai123@gmail.com', '123321');
