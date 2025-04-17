@@ -82,5 +82,32 @@ namespace ProjetoEcommerce.Repositorio
                 return ProdList;
             }
         }
+
+        public Produto ObterProduto (int codigo)
+        {
+            using (var conexao = new MySqlConnection (_conexaoMySQL))
+            {
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand("select * from Produto where CodProd = @codigo", conexao);
+
+                cmd.Parameters.AddWithValue("@codigo", codigo);
+
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                MySqlDataReader dr;
+
+                Produto produto = new Produto();
+                dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+
+                while (dr.Read())
+                {
+                    produto.CodProd = Convert.ToInt32(dr["CodProd"]);
+                    produto.Nome = (string)(dr["Nome"]);
+                    produto.Descricao = (string)(dr["Descricao"]);
+                    produto.Quantidade = Convert.ToInt32(dr["Quantidade"]);
+                    produto.Preco = Convert.ToDecimal(dr["Preco"]);
+                }
+                return produto;
+            }
+        }
     }
 }
