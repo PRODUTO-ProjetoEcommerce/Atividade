@@ -1,10 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProjetoEcommerce.Models;
+using ProjetoEcommerce.Repositorio;
 
 namespace ProjetoEcommerce.Controllers
 {
     public class ProdutoController : Controller
     {
-        public IActionResult Index()
+        private readonly ProdutoRepositorio _produtoRepositorio;
+        public ProdutoController(ProdutoRepositorio produtoRepositorio)
+        {
+            _produtoRepositorio = produtoRepositorio;
+        }
+
+         public IActionResult Index()
         {
             return View();
         }
