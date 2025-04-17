@@ -1,0 +1,49 @@
+﻿@model ProjetoEcommerce.Models.Cliente;
+
+<h1>EditarCLiente</h1>
+
+<h4>Cliente</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditarCliente" method="post">
+            @*Esse token desempenha um papel crucial na prevenção de ataques de Cross-Site Request Forgery (CSRF).
+            Um ataque CSRF ocorre quando um site malicioso, um e-mail, um programa de mensagens 
+            instantâneas ou um programa induz um navegador da web de um usuário conectado a um aplicativo da web a executar uma 
+            ação indesejada naquele aplicativo. Isso pode acontecer sem o conhecimento ou consentimento do usuário.*@
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <input type="hidden" asp-for="CodCli" class="form-control" />
+                <span asp-validation-for="CodCli" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NomeCli" class="control-label"></label>
+                <input asp-for="NomeCli" class="form-control" />
+                <span asp-validation-for="NomeCli" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="TelCli" class="control-label"></label>
+                <input asp-for="TelCli" class="form-control" />
+                <span asp-validation-for="TelCli" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EmailCli" class="control-label"></label>
+                <input asp-for="EmailCli" class="form-control" />
+                <span asp-validation-for="EmailCli" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Alterar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="PainelCliente">Voltar</a>
+</div>
