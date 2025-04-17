@@ -50,5 +50,37 @@ namespace ProjetoEcommerce.Repositorio
                 return false;
             }
         }
+
+        public IEnumerable <Produto> TodosProdutos()
+        {
+            List <Produto> ProdList = new List<Produto>();
+
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+
+                MySqlCommand cmd = new MySqlCommand("select * from Produto", conexao);
+
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                conexao.Close();
+
+                foreach(DataRow dr in dt.Rows)
+                {
+                    ProdList.Add(
+                        new Produto
+                        {
+                            CodProd = Convert.ToInt32(dr["CodProd"]),
+                            Nome = ((string)dr["Nome"]),
+                            Descricao = ((string)dr["Descricao"]),
+                            Quantidade = Convert.ToInt32(dr["Quantidade"]),
+                            Preco = Convert.ToDecimal(dr["Preco"]),
+                        }
+                        );
+                }
+                return ProdList;
+            }
+        }
     }
 }
